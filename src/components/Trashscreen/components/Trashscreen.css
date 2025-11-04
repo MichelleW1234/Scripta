@@ -54,14 +54,18 @@
     background-size: cover;
     background-position: center;
 
+    transition: transform 0.3s ease;
+
 }
 
 .TrashOptionPage:hover {
 
+    transform: scale(1.05);
+
     filter: 
-    drop-shadow(0 0 0.5rem rgba(0, 4, 115, 0.8))
-    drop-shadow(0 0 0.5rem rgba(0, 4, 115, 0.8))
-    drop-shadow(0 0 0.5rem rgba(0, 4, 115, 0.8));
+        drop-shadow(0 0 0.5rem rgba(0, 4, 115, 0.8))
+        drop-shadow(0 0 0.5rem rgba(0, 4, 115, 0.8))
+        drop-shadow(0 0 0.5rem rgba(0, 4, 115, 0.8));
 
 }
 

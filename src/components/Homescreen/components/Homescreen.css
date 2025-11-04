@@ -55,10 +55,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+
+    transition: transform 0.3s ease;
     
 }
 
 .HomeDocPage:hover{
+
+    transform: scale(1.05);
 
     filter: 
         drop-shadow(0 0 0.6rem rgba(31, 0, 167, 0.8))
@@ -114,9 +118,13 @@
     background-size: cover;
     background-position: center;
 
+    transition: transform 0.3s ease;
+
 }
 
 .HomeDocPageNew:hover{
+
+    transform: scale(1.05);
 
     color: rgb(209, 201, 255);
     box-shadow: 0 0 1rem 0.5rem rgb(7, 0, 64);
