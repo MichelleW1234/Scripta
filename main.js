@@ -34,9 +34,21 @@ function createWindow () {
   const template = [
     {
       label: 'View',
-      submenu: [
-        { role: 'toggledevtools' },
-      ],
+        submenu: [
+          { role: 'toggledevtools' },
+        ],
+    },
+    {
+      label: 'Edit',
+        submenu: [
+          { role: 'undo' },
+          { role: 'redo' },
+          { type: 'separator' },
+          { role: 'cut' },
+          { role: 'copy' },
+          { role: 'paste' },
+          { role: 'selectAll' },
+        ],
     },
   ];
 
