@@ -34,8 +34,8 @@
 
 .TrashOptionPage{
 
-    height: 20rem;
-    width: 20rem;
+    height: 18rem;
+    width: 18rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,8 +77,8 @@
 
 .TrashOptionPageActive {
 
-    height: 20rem;
-    width: 20rem;
+    height: 18rem;
+    width: 18rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

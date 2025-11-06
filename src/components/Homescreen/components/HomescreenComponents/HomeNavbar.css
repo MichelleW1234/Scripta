@@ -34,7 +34,7 @@
 
 .HomeNavBarSuggestionsContainer{
 
-    height: 35vh;
+    height: 40vh;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -75,10 +75,14 @@
     background-size: cover;
     background-position: center;
 
+    transition: transform 0.3s ease;
+
 }
 
 
 .HomeNavBarSuggestionPage:hover{
+
+    transform: scale(1.05);
 
     color: rgb(59, 138, 255);  
 

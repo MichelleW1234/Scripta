@@ -34,5 +34,19 @@
     "globals": "^16.4.0",
     "vite": "^7.1.7",
     "wait-on": "^9.0.1"
+  },
+  "build": {
+    "appId": "com.MichellesDomain.Word-Processor",
+    "productName": "Word-Processor",
+    "files": [
+      "dist",
+      "main.js"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "directories": {
+      "output": "release"
+    }
   }
 }
