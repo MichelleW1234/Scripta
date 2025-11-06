@@ -85,13 +85,13 @@ button{
 
 .NavBarButton{
 
-  font-size: 1.3rem;
-  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  padding: 1rem 1.3rem;
   border-radius: 0.5rem;
 
   color: black;
-  border-left: 0.3rem solid black;
-  border-bottom: 0.3rem solid black;
+  border-left: 0.25rem solid black;
+  border-bottom: 0.25rem solid black;
   border-right: 0.15rem solid black;
   border-top: 0.15rem solid black;
   background-color: rgb(197, 245, 255);
@@ -134,13 +134,13 @@ button{
 
 .GeneralButton{
 
-  font-size: 1.3rem;
-  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  padding: 1rem 1.3rem;
   border-radius: 0.5rem;
 
   color: black;
-  border-left: 0.3rem solid black;
-  border-bottom: 0.3rem solid black;
+  border-left: 0.25rem solid black;
+  border-bottom: 0.25rem solid black;
   border-right: 0.15rem solid black;
   border-top: 0.15rem solid black;
   background-color: rgb(154, 172, 255);

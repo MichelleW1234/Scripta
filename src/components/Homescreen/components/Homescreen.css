@@ -14,7 +14,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 
-    gap: 7rem;
+    gap: 5rem;
 
 }
 
@@ -35,8 +35,8 @@
 
 .HomeDocPage{
 
-    height: 21rem;
-    width: 16rem;
+    height: 18rem;
+    width: 13.8rem;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -104,10 +104,10 @@
 
 .HomeDocPageNew{
 
-    height: 21rem;
-    width: 16rem;
+    height: 18rem;
+    width: 13.8rem;
 
-    font-size: 6rem;
+    font-size: 5rem;
     padding: 1rem;
 
     color: rgb(6, 0, 73);
@@ -133,13 +133,13 @@
 
 .HomeDocButton{
 
-    font-size: 1.2rem;
-    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    padding: 1rem;
     border-radius: 0.5rem;
 
     color: black;
-    border-bottom: 0.3rem solid rgb(0, 0, 0);
-    border-left: 0.3rem solid rgb(0, 0, 0);
+    border-bottom: 0.25rem solid rgb(0, 0, 0);
+    border-left: 0.25rem solid rgb(0, 0, 0);
     border-right: 0.1rem solid rgb(0, 0, 0);
     border-top: 0.1rem solid rgb(0, 0, 0);
     background-color: rgb(201, 211, 255);
@@ -161,16 +161,16 @@
 
 .HomeDocTitle{
 
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
 
 }
 
 .HomeDocDateAndTime{
 
-    width: 16rem;
+    width: 13.8rem;
 
-    font-size: 1.3rem;
+    font-size: 1rem;
 
     color: rgb(75, 0, 75);
 

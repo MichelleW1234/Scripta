@@ -3,7 +3,12 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 3000, // <-- change this to your desired port
+  base: './',  // Important: make assets relative so Electron can load them
+  build: {
+    outDir: 'dist',
   },
+  server: {
+    host: 'localhost', // Restricts access to your local machine
+    port: 3000,
+  }
 })

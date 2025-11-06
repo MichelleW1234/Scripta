@@ -41,7 +41,7 @@ function Trashscreen (){
 
                     {Trash.length == 0 ? (
 
-                        <h1>Trash is empty.</h1>
+                        <h1 className = "TrashEmptyMessage">Trash is empty.</h1>
                     
                     ): (
 
