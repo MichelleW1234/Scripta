@@ -1,5 +1,5 @@
 {
-  "name": "word-processor",
+  "name": "scripta",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -36,8 +36,8 @@
     "wait-on": "^9.0.1"
   },
   "build": {
-    "appId": "com.MichellesDomain.Word-Processor",
-    "productName": "Word-Processor",
+    "appId": "com.MichellesDomain.Scripta",
+    "productName": "Scripta",
     "files": [
       "dist",
       "main.js"

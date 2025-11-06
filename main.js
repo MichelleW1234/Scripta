@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 if (process.arch === 'x64') {
-  const userDataPath = path.join(app.getPath('appData'), 'Word-Processor');
+  const userDataPath = path.join(app.getPath('appData'), 'Scripta');
   app.setPath('userData', userDataPath);
 }
 
