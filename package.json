@@ -43,7 +43,8 @@
       "main.js"
     ],
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "icon": "assets/ScriptaIconMac.icns"
     },
     "directories": {
       "output": "release"
