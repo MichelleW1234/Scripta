@@ -130,6 +130,26 @@ button{
 
 }
 
+.FullFlagContainer {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 3rem;
+  gap: 2rem;
+  font-size: 1rem;
+
+  border-left: 0.35rem solid black;
+  border-bottom: 0.35rem solid black;
+  border-right: 0.15rem solid black;
+  border-top: 0.15rem solid black;
+  background-color: rgb(222, 166, 255);
+  box-shadow: 0 0 1rem 0.5rem rgb(223, 180, 255);
+
+}
+
 /*Buttons: */
 
 .GeneralButton{

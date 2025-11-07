@@ -1,28 +1,7 @@
-.FontStyleChangerContainer{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    padding: 3rem 5rem;
-    gap: 3rem;
-    font-size: 1.3rem;
-
-    border-left: 0.4rem solid black;
-    border-bottom: 0.4rem solid black;
-    border-right: 0.15rem solid black;
-    border-top: 0.15rem solid black;
-    background-color: rgb(245, 166, 255);
-    box-shadow: 0 0 1.25rem 1rem rgb(229, 180, 255);
-
-}
-
-
 .FontStyleChangerOptionsContainer{
 
     width: 30vw;
-    max-height: 30vh;
+    max-height: 25vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -36,12 +15,12 @@
 
 .FontStyleChangerOption{
 
-    font-size: 1.3rem;
+    font-size: 1rem;
     padding: 1rem;
     border-radius: 3rem;
 
-    border-left: 0.3rem solid black;
-    border-bottom: 0.3rem solid black;
+    border-left: 0.25rem solid black;
+    border-bottom: 0.25rem solid black;
     border-right: 0.15rem solid black;
     border-top: 0.15rem solid black;
     background-color: rgb(219, 209, 255);
@@ -51,13 +30,13 @@
 
 .FontStyleChangerOptionActive{
 
-    font-size: 1.3rem;
+    font-size: 1rem;
     padding: 1rem;
     border-radius: 3rem;
 
     color: white;
-    border-left: 0.3rem solid black;
-    border-bottom: 0.3rem solid black;
+    border-left: 0.25rem solid black;
+    border-bottom: 0.25rem solid black;
     border-right: 0.15rem solid black;
     border-top: 0.15rem solid black;
     background-color: rgb(91, 15, 255);
@@ -67,12 +46,12 @@
 
 .FontStyleChangerDoneButton{
 
-    font-size: 1.3rem;
+    font-size: 1rem;
     padding: 1rem;
     border-radius: 0.5rem;
 
-    border-left: 0.35rem solid black;
-    border-bottom: 0.35rem solid black;
+    border-left: 0.3rem solid black;
+    border-bottom: 0.3rem solid black;
     border-right: 0.15rem solid black;
     border-top: 0.15rem solid black;
     background-color: rgb(187, 220, 255);

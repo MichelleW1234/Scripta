@@ -46,7 +46,8 @@ function DocFontStyleChanger ({typeChanging, setOpenFlag, currentDocument, setCu
     return (
 
         <div className = "FullScreenFloatingFlag" >
-            <div className="FontStyleChangerContainer">
+            <div className="FullFlagContainer">
+
                 <h3> Select one of the options below: </h3>
                 <div className="FontStyleChangerOptionsContainer">
                     {allOptions.map((option, index) => {
@@ -71,6 +72,7 @@ function DocFontStyleChanger ({typeChanging, setOpenFlag, currentDocument, setCu
                     })}
                 </div>
                 <button className="FontStyleChangerDoneButton" onClick = {() => done()}> Done </button>
+                
             </div>
         </div>
 

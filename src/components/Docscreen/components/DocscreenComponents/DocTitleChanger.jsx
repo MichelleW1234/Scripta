@@ -60,7 +60,7 @@ function DocTitleChanger ({setOpenTitleFlag, currentDocument, setCurrentDocument
 
         <div className = "FullScreenFloatingFlag">
 
-            <div className = "DocTitleChangerBox">
+            <div className = "FullFlagContainer">
                 <h3>Enter your new title below:</h3>
 
                 <ContentEditable
