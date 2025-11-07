@@ -47,6 +47,7 @@ function createWindow () {
           { role: 'cut' },
           { role: 'copy' },
           { role: 'paste' },
+          { role: 'pasteAndMatchStyle' },
           { role: 'selectAll' },
         ],
     },
