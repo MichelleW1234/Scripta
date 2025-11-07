@@ -66,9 +66,9 @@
 
     color: rgb(3, 0, 85);  
     filter: 
-        drop-shadow(0 0 0.6rem rgb(174, 202, 255))
-        drop-shadow(0 0 0.6rem rgb(174, 202, 255))
-        drop-shadow(0 0 0.6rem rgb(174, 202, 255));
+        drop-shadow(0 0 0.4rem rgb(174, 202, 255))
+        drop-shadow(0 0 0.4rem rgb(174, 202, 255))
+        drop-shadow(0 0 0.4rem rgb(174, 202, 255));
 
     background-image: url("../../../../images/image 1.svg");
     background-repeat: no-repeat;
@@ -82,14 +82,16 @@
 
 .HomeNavBarSuggestionPage:hover{
 
-    transform: scale(1.05);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0) scale(1.05);
 
     color: rgb(59, 138, 255);  
 
     filter: 
-        drop-shadow(0 0 0.6rem rgb(60, 0, 132))
-        drop-shadow(0 0 0.6rem rgb(60, 0, 132))
-        drop-shadow(0 0 0.6rem rgb(60, 0, 132));
+        drop-shadow(0 0 0.4rem rgb(60, 0, 132))
+        drop-shadow(0 0 0.4rem rgb(60, 0, 132))
+        drop-shadow(0 0 0.4rem rgb(60, 0, 132));
 
 }
 
@@ -110,7 +112,7 @@
     border-right: 0.15rem solid black;
     border-top: 0.15rem solid black;
     background-color: rgb(188, 189, 255);
-    box-shadow: 0 0 1rem 0.75rem rgb(165, 169, 255);
+    box-shadow: 0 0 1rem 0.5rem rgb(186, 190, 255);
 
 }
 
@@ -118,6 +120,6 @@
 
     color: white;
     background-color: rgb(30, 33, 255);
-    box-shadow: 0 0 1rem 0.75rem rgb(119, 126, 255);
+    box-shadow: 0 0 1rem 0.5rem rgb(119, 126, 255);
 
 }
