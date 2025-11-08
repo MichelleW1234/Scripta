@@ -3,13 +3,16 @@ import {useState, useRef} from "react";
 import ContentEditable from "react-contenteditable";
 
 import DocTitleChanger from "./DocscreenComponents/DocTitleChanger.jsx";
-import DocToolBar from "./DocscreenComponents/DocToolBar.jsx";
+import DocToolBar from './DocscreenComponents/DocToolBar/DocToolBar.jsx';
+import DocImages from "./DocscreenComponents/DocImages.jsx";
 
 import {useDocuments} from "../../../providers/DocumentsProvider.jsx";
 import {useTrash} from "../../../providers/TrashProvider.jsx";
 import {useActiveDocument} from "../../../providers/ActiveDocumentProvider.jsx";
 
 import { deleteDocument, moveToTrash } from '../../../helpers/Helpers.js';
+
+import importedImage from "../../../Images/image 1.svg";
 
 import "./Docscreen.css";
 
@@ -20,6 +23,10 @@ function Docscreen (){
     const {Trash, setTrash} = useTrash();
 
     const [openTitleFlag, setOpenTitleFlag] = useState(false);
+    const [openImagesFlag, setOpenImagesFlag] = useState(false);
+
+    const [selectedImages, setSelectedImages] = useState([]);
+
 
     const [currentDocument, setCurrentDocument] = useState(
         ActiveDocument !== -1 
@@ -33,6 +40,15 @@ function Docscreen (){
         // Uses html-formatted text:
         setCurrentDocument(prev => [newText, ...prev.slice(1)]);
  
+    };
+
+    const insertImage = () => {
+        const img = document.createElement("img");
+        img.src = importedImage;
+        img.style.maxWidth = "10rem";
+
+        editableRef.current.appendChild(img);
+
     };
 
 
@@ -82,6 +98,11 @@ function Docscreen (){
     return (
 
         <>
+            {openImagesFlag === true &&
+            <DocImages
+                setOpenImagesFlag = {setOpenImagesFlag}
+                setSelectedImages = {setSelectedImages}
+            />}
 
             {openTitleFlag === true &&
             <DocTitleChanger
@@ -91,6 +112,7 @@ function Docscreen (){
             />}
 
             <DocToolBar
+                editableRef = {editableRef}
                 currentDocument = {currentDocument}
                 setCurrentDocument = {setCurrentDocument}
             />
@@ -100,7 +122,21 @@ function Docscreen (){
                 <div className = "DocComponentsContainer">
 
                     <h1 className = {`DocTitle DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocPage-${currentDocument[2][3]}`}> {currentDocument[1]} </h1>
-                    <button className = "GeneralButton" onClick = {() => setOpenTitleFlag(true)}> Edit Title</button>
+                    <div className = "GeneralButtonsContainer">
+                        <button className = "GeneralButton" onClick = {() => setOpenTitleFlag(true)}> Edit Title</button>
+                        <button className = "GeneralButton" onClick = {() => setOpenImagesFlag(true)}> Select Images </button>
+
+                        {selectedImages.length === 0 ? (
+
+                            <button className = "placeHolderButton"> Insert Images </button>
+
+                        ) : (
+
+                            <button className = "GeneralButton" onClick = {() => insertImage()}> Insert Images ({selectedImages.length}) </button>
+
+                        )}
+                       
+                    </div>
 
                     <ContentEditable
                         innerRef={editableRef}
@@ -114,7 +150,6 @@ function Docscreen (){
                         <button className = "GeneralButton" onClick = {() => saveProgress(0)}> Save </button>
                         <Link to="/home" className = "GeneralButton" onClick = {() => saveProgress(-1)}> Save + Exit </Link>
                         <Link to="/home" className = "GeneralButton" onClick = {() => deleting()}> Delete </Link>
-        
                     </div>
 
                 </div>

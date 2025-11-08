@@ -46,8 +46,10 @@ function createWindow () {
           { type: 'separator' },
           { role: 'cut' },
           { role: 'copy' },
-          { role: 'paste' },
-          { role: 'pasteAndMatchStyle' },
+          {
+            role: 'pasteAndMatchStyle',
+            accelerator: 'CmdOrCtrl+V'
+          },
           { role: 'selectAll' },
         ],
     },

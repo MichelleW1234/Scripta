@@ -256,3 +256,19 @@
   background-color: rgb(43, 43, 43);
 
 }
+
+.placeHolderButton {
+
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  color: black;
+  border-left: 0.25rem solid black;
+  border-bottom: 0.25rem solid black;
+  border-right: 0.15rem solid black;
+  border-top: 0.15rem solid black;
+  background-color: rgb(109, 125, 198);
+  box-shadow: 0 0 1rem 0.75rem rgb(167, 112, 196);
+
+}
