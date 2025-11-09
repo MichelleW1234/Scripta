@@ -14,24 +14,3 @@
     background-color: rgb(206, 227, 255);
 
 }
-
-.DocTitleChangerButton{
-
-    font-size: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-
-    border-top: 0.15rem solid black;
-    border-right: 0.15rem solid black;
-    border-left: 0.3rem solid black;
-    border-bottom: 0.3rem solid black;
-    background-color: rgb(178, 216, 255);
-
-}
-
-.DocTitleChangerButton:hover{
-
-    color: white;
-    background-color: rgb(0, 120, 240);
-
-}

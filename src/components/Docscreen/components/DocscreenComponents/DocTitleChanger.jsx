@@ -71,7 +71,7 @@ function DocTitleChanger ({setOpenTitleFlag, currentDocument, setCurrentDocument
                     className="DocTitleChangerText"
                 />
 
-                <button className = "DocTitleChangerButton" onClick = {() => processNewTitle()}> Done </button>
+                <button className = "FlagContainerButton" onClick = {() => processNewTitle()}> Done </button>
 
                 {errorFlag && errorMessage}
 

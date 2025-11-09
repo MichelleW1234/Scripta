@@ -71,7 +71,7 @@ function DocFontStyleChanger ({typeChanging, setOpenFlag, currentDocument, setCu
 
                     })}
                 </div>
-                <button className="FontStyleChangerDoneButton" onClick = {() => done()}> Done </button>
+                <button className="FlagContainerButton" onClick = {() => done()}> Done </button>
                 
             </div>
         </div>
