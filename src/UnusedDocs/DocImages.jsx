@@ -14,12 +14,15 @@ function DocImages ({setOpenImagesFlag, setSelectedImages}){
 
     const addImage = (e) => {
         const files = Array.from(e.target.files);
+
+        files.forEach(file => console.log("file.path:", file.path));
+        
         const newImages = files
-            .filter(file => !ImportedImages.some(img => img.file.name === file.name && img.file.size === file.size))
+            .filter(file => !ImportedImages.some(img => img.path === file.path))
             .map(file => ({
-                file,
-                url: URL.createObjectURL(file),
-            }));
+            name: file.name,
+            path: file.path
+        }));
 
         setImportedImages(prev => [...prev, ...newImages]);
     };
@@ -40,9 +43,7 @@ function DocImages ({setOpenImagesFlag, setSelectedImages}){
                     ) : (
 
                         ImportedImages.map((img, index) => (
-                            <div className = "ImportedImageBox">
-                                <img key={index} src={img.url} className = "ImportedImage"/>
-                            </div>
+                            <img key={index} src={`file://${img.path}`} className = "ImportedImage"/>
                         ))
 
                     )}

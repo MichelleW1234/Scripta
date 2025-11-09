@@ -4,7 +4,6 @@ import ContentEditable from "react-contenteditable";
 
 import DocTitleChanger from "./DocscreenComponents/DocTitleChanger.jsx";
 import DocToolBar from './DocscreenComponents/DocToolBar/DocToolBar.jsx';
-import DocImages from "./DocscreenComponents/DocImages.jsx";
 
 import {useDocuments} from "../../../providers/DocumentsProvider.jsx";
 import {useTrash} from "../../../providers/TrashProvider.jsx";
@@ -24,8 +23,6 @@ function Docscreen (){
 
     const [openTitleFlag, setOpenTitleFlag] = useState(false);
     const [openImagesFlag, setOpenImagesFlag] = useState(false);
-
-    const [selectedImages, setSelectedImages] = useState([]);
 
 
     const [currentDocument, setCurrentDocument] = useState(
@@ -98,11 +95,6 @@ function Docscreen (){
     return (
 
         <>
-            {openImagesFlag === true &&
-            <DocImages
-                setOpenImagesFlag = {setOpenImagesFlag}
-                setSelectedImages = {setSelectedImages}
-            />}
 
             {openTitleFlag === true &&
             <DocTitleChanger
@@ -124,18 +116,7 @@ function Docscreen (){
                     <h1 className = {`DocTitle DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocPage-${currentDocument[2][3]}`}> {currentDocument[1]} </h1>
                     <div className = "GeneralButtonsContainer">
                         <button className = "GeneralButton" onClick = {() => setOpenTitleFlag(true)}> Edit Title</button>
-                        <button className = "GeneralButton" onClick = {() => setOpenImagesFlag(true)}> Select Images </button>
-
-                        {selectedImages.length === 0 ? (
-
-                            <button className = "placeHolderButton"> Insert Images </button>
-
-                        ) : (
-
-                            <button className = "GeneralButton" onClick = {() => insertImage()}> Insert Images ({selectedImages.length}) </button>
-
-                        )}
-                       
+                        <button className = "GeneralButton" onClick = {() => insertImage()}> Select Images </button>
                     </div>
 
                     <ContentEditable
