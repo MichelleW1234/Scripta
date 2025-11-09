@@ -22,8 +22,6 @@ function Docscreen (){
     const {Trash, setTrash} = useTrash();
 
     const [openTitleFlag, setOpenTitleFlag] = useState(false);
-    const [openImagesFlag, setOpenImagesFlag] = useState(false);
-
 
     const [currentDocument, setCurrentDocument] = useState(
         ActiveDocument !== -1 
@@ -39,6 +37,14 @@ function Docscreen (){
  
     };
 
+    const handlePaste = () => {
+ 
+
+
+    };
+
+
+    /*
     const insertImage = () => {
         const img = document.createElement("img");
         img.src = importedImage;
@@ -47,6 +53,7 @@ function Docscreen (){
         editableRef.current.appendChild(img);
 
     };
+    */
 
 
 
@@ -123,6 +130,7 @@ function Docscreen (){
                         innerRef={editableRef}
                         html={currentDocument[0]}
                         onChange={handleChange}
+                        onPaste = {handlePaste}
                         tagName="div"
                         className={`DocPaper DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocSize-${currentDocument[2][2]} DocPage-${currentDocument[2][3]}`}
                     />

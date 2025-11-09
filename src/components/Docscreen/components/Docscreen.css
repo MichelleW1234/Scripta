@@ -62,6 +62,14 @@
   background-color: rgb(194, 224, 255);
   box-shadow: 0 0 1rem 0.75rem rgb(167, 112, 196);
 
+  img {
+
+    height: auto;
+    width: auto;
+    max-width: 50%;
+
+  }
+
 }
 
 .DocStyle-0 {
