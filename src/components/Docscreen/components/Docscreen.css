@@ -62,14 +62,6 @@
   background-color: rgb(194, 224, 255);
   box-shadow: 0 0 1rem 0.75rem rgb(167, 112, 196);
 
-  img {
-
-    height: auto;
-    width: auto;
-    max-width: 50%;
-
-  }
-
 }
 
 .DocStyle-0 {
@@ -87,24 +79,6 @@
 .DocStyle-2 {
 
   font-family: 'Silkscreen', sans-serif;
-
-}
-
-.DocSize-0 {
-
-  font-size: 1rem;
-
-}
-
-.DocSize-1 {
-
-  font-size: 1.3rem;
-
-}
-
-.DocSize-2 {
-
-  font-size: 1.6rem;
 
 }
 
@@ -264,6 +238,184 @@
   background-color: rgb(43, 43, 43);
 
 }
+
+.DocFontSize-0 {
+
+  font-size: 0.4rem;
+
+}
+
+.DocFontSize-1 {
+
+  font-size: 0.6rem;
+
+}
+
+.DocFOntSize-2 {
+
+  font-size: 0.8rem;
+
+}
+
+.DocFontSize-3 {
+
+  font-size: 1rem;
+
+}
+
+.DocFontSize-4 {
+
+  font-size: 1.2rem;
+
+}
+
+.DocFontSize-5 {
+
+  font-size: 1.4rem;
+
+}
+
+.DocFontSize-6 {
+
+  font-size: 1.6rem;
+
+}
+
+.DocFontSize-7 {
+
+  font-size: 1.8rem;
+
+}
+
+.DocFontSize-8 {
+
+  font-size: 2rem;
+
+}
+
+.DocFontSize-9 {
+
+  font-size: 2.1rem;
+
+}
+
+
+.DocImageSize-0{
+
+  img {
+
+    height: auto;
+    width: 10%;
+
+  }
+
+}
+
+.DocImageSize-1{
+
+  img {
+
+    height: auto;
+    width: 20%;
+
+  }
+
+}
+
+.DocImageSize-2{
+
+  img {
+
+    height: auto;
+    width: 30%;
+
+  }
+
+}
+
+.DocImageSize-3{
+
+  img {
+
+    height: auto;
+    width: 40%;
+
+  }
+
+}
+
+
+.DocImageSize-4{
+
+  img {
+
+    height: auto;
+    width: 50%;
+
+  }
+
+}
+
+
+.DocImageSize-5{
+
+  img {
+
+    height: auto;
+    width: 60%;
+
+  }
+
+}
+
+
+.DocImageSize-6{
+
+  img {
+
+    height: auto;
+    width: 70%;
+
+  }
+
+}
+
+
+.DocImageSize-7{
+
+  img {
+
+    height: auto;
+    width: 80%;
+
+  }
+
+}
+
+
+.DocImageSize-8{
+
+  img {
+
+    height: auto;
+    width: 90%;
+
+  }
+
+}
+
+
+.DocImageSize-9{
+
+  img {
+
+    height: auto;
+    width: 100%;
+
+  }
+
+}
+
 
 .placeHolderButton {
 

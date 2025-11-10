@@ -9,13 +9,37 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
 
     const allFonts = ["Pixel1", "Pixel2", "Pixel3"];
     const allColors = ["black", "red", "dark red", "orange", "dark orange", "pink", "dark pink", "yellow", "dark yellow", "green", "dark green", "blue", "dark blue", "purple", "dark purple"];
-    const allSizes = ["small", "medium", "large"];
     const allPageColors = ["white", "light red", "light orange", "light pink", "light yellow", "light green", "light blue", "light purple", "black"];
 
     const [openFontFlag, setOpenFontFlag] = useState(false);
     const [openColorFlag, setOpenColorFlag] = useState(false);
-    const [openSizeFlag, setOpenSizeFlag] = useState(false);
     const [openPageColorFlag, setOpenPageColorFlag] = useState(false);
+
+    const changeImageSize = (e) => {
+
+        const value = e.target.value;
+
+        setCurrentDocument((prev) => {
+            let newDoc = [...prev];
+            newDoc[2] = newDoc[2][0] + newDoc[2][1] + newDoc[2][2] + newDoc[2][3] + value;
+
+            return newDoc;
+        })
+
+    }
+
+    const changeFontSize = (e) => {
+
+        const value = e.target.value;
+
+        setCurrentDocument((prev) => {
+            let newDoc = [...prev];
+            newDoc[2] = newDoc[2][0] + newDoc[2][1]  + newDoc[2][2] + value + newDoc[2][4];
+
+            return newDoc;
+        })
+
+    }
 
     return (
 
@@ -40,20 +64,9 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
                 />
             }
 
-
-            {openSizeFlag === true &&
-                <DocFontStyleChanger
-                    typeChanging = {2}
-                    setOpenFlag = {setOpenSizeFlag}
-                    currentDocument = {currentDocument}
-                    setCurrentDocument = {setCurrentDocument} 
-                    allOptions = {allSizes}
-                />
-            }
-
             {openPageColorFlag === true &&
                 <DocFontStyleChanger
-                    typeChanging = {3}
+                    typeChanging = {2}
                     setOpenFlag = {setOpenPageColorFlag}
                     currentDocument = {currentDocument}
                     setCurrentDocument = {setCurrentDocument} 
@@ -78,17 +91,35 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
                 </div>
                 <div className="DocToolBarChangeContainer">
                     <div className="DocToolBarChangeBox">
-                        <p> Font Size: </p>
-                        <p className = {`DocToolBarOptionBox DocToolBarSize-${currentDocument[2][2]}`}>{allSizes[currentDocument[2][2]]}</p>
-                    </div>
-                    <button className = "DocToolBarChangeButton" onClick={() => setOpenSizeFlag(true)}> Change Size </button>
-                </div>
-                <div className="DocToolBarChangeContainer">
-                    <div className="DocToolBarChangeBox">
                         <p> Page Color: </p>
-                        <p className = {`DocToolBarColorBox DocToolBarPage-${currentDocument[2][3]}`}></p>
+                        <p className = {`DocToolBarColorBox DocToolBarPage-${currentDocument[2][2]}`}></p>
                     </div>
                     <button className = "DocToolBarChangeButton" onClick={() => setOpenPageColorFlag(true)}> Change Page Color </button>
+                </div>
+                
+                <div className="DocToolBarChangeContainer">
+                    <div className="DocToolBarChangeBox">
+                        <p> Font Size: </p>
+                        <input 
+                            className = "DocToolBarSlider"
+                            type="range"
+                            min="0"
+                            max="9"
+                            value={currentDocument[2][3]}
+                            onChange={changeFontSize}
+                        />
+                    </div>
+                    <div className="DocToolBarChangeBox">
+                        <p> Image Size: </p>
+                        <input 
+                            className = "DocToolBarSlider"
+                            type="range"
+                            min="0"
+                            max="9"
+                            value={currentDocument[2][4]}
+                            onChange={changeImageSize}
+                        />
+                    </div>
                 </div>
                 <button className="NavBarButton" onClick = {() => printDocument()}> Print Document </button>
             

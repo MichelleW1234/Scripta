@@ -11,7 +11,6 @@ import {useActiveDocument} from "../../../providers/ActiveDocumentProvider.jsx";
 
 import { deleteDocument, moveToTrash } from '../../../helpers/Helpers.js';
 
-import importedImage from "../../../Images/image 1.svg";
 
 import "./Docscreen.css";
 
@@ -26,7 +25,7 @@ function Docscreen (){
     const [currentDocument, setCurrentDocument] = useState(
         ActiveDocument !== -1 
             ? Documents[ActiveDocument]
-            : ["", "Untitled", "0010", ""]
+            : ["", "Untitled", "00052", ""]
         );
 
     const editableRef = useRef();
@@ -38,50 +37,25 @@ function Docscreen (){
     };
 
 
-    /*
-    const handlePaste = (e) => {
-        e.preventDefault();
-        
-        const text = window.electron.clipboard.readText();
-        const image = window.electron.clipboard.readImage();
 
-        if (!image.isEmpty()) {
+    const handleImageImport = (event) => {
 
-            const img = document.createElement("img");
-            img.src = image.toDataURL();
-            document.execCommand("insertHTML", false, img.outerHTML);
+        const file = event.target.files[0];
+        if (!file) return;
 
-        } else if (text) {
-            
-            document.execCommand("insertText", false, text);
+        const reader = new FileReader();
 
-        } else {
+        reader.onload = (e) => {
+            const imgTag = `<img src="${e.target.result}"/>`;      
+            const updatedHTML = currentDocument[0] + imgTag;
 
-            console.log("Clipboard contains unsupported or security-limited content");
+            handleChange({ target: { value: updatedHTML } });
+            event.target.value = null;
+        };
 
-        }
+        reader.readAsDataURL(file);
 
     };
-
-
-    /*
-
-
-
-    */
-    
-
-    /*
-    const insertImage = () => {
-        const img = document.createElement("img");
-        img.src = importedImage;
-        img.style.maxWidth = "10rem";
-
-        editableRef.current.appendChild(img);
-
-    };
-    */
-
 
 
     const saveProgress = (newActiveDoc) => {
@@ -129,7 +103,6 @@ function Docscreen (){
     return (
 
         <>
-
             {openTitleFlag === true &&
             <DocTitleChanger
                 setOpenTitleFlag = {setOpenTitleFlag}
@@ -147,19 +120,26 @@ function Docscreen (){
 
                 <div className = "DocComponentsContainer">
 
-                    <h1 className = {`DocTitle DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocPage-${currentDocument[2][3]}`}> {currentDocument[1]} </h1>
+                    <h1 className = {`DocTitle DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocPage-${currentDocument[2][2]}`}> {currentDocument[1]} </h1>
                     <div className = "GeneralButtonsContainer">
                         <button className = "GeneralButton" onClick = {() => setOpenTitleFlag(true)}> Edit Title</button>
-                        <button className = "GeneralButton" onClick = {() => insertImage()}> Select Images </button>
+                        <label htmlFor="importImage" className = "GeneralButton">Insert Image</label>
+                        <input
+                            id ="importImage"
+                            type="file"
+                            accept="image/*"
+                            style={{ display: "none" }}
+                            onChange={handleImageImport}
+                        />
+                        
                     </div>
 
                     <ContentEditable
                         innerRef={editableRef}
                         html={currentDocument[0]}
                         onChange={handleChange}
-                        onPaste = {handlePaste}
                         tagName="div"
-                        className={`DocPaper DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocSize-${currentDocument[2][2]} DocPage-${currentDocument[2][3]}`}
+                        className={`DocPaper DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocPage-${currentDocument[2][2]} DocFontSize-${currentDocument[2][3]} DocImageSize-${currentDocument[2][4]}`}
                     />
 
                     <div className = "GeneralButtonsContainer">
