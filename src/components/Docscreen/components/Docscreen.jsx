@@ -36,6 +36,13 @@ function Docscreen (){
  
     };
 
+    
+    const handlePaste = (e) => {
+        e.preventDefault();
+
+        const text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertText", false, text);
+    };
 
 
     const handleImageImport = (event) => {
@@ -138,6 +145,7 @@ function Docscreen (){
                         innerRef={editableRef}
                         html={currentDocument[0]}
                         onChange={handleChange}
+                        onPaste={handlePaste}
                         tagName="div"
                         className={`DocPaper DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocPage-${currentDocument[2][2]} DocFontSize-${currentDocument[2][3]} DocImageSize-${currentDocument[2][4]}`}
                     />
