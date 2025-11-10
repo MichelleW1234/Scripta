@@ -37,12 +37,39 @@ function Docscreen (){
  
     };
 
-    const handlePaste = () => {
- 
 
+    /*
+    const handlePaste = (e) => {
+        e.preventDefault();
+        
+        const text = window.electron.clipboard.readText();
+        const image = window.electron.clipboard.readImage();
+
+        if (!image.isEmpty()) {
+
+            const img = document.createElement("img");
+            img.src = image.toDataURL();
+            document.execCommand("insertHTML", false, img.outerHTML);
+
+        } else if (text) {
+            
+            document.execCommand("insertText", false, text);
+
+        } else {
+
+            console.log("Clipboard contains unsupported or security-limited content");
+
+        }
 
     };
 
+
+    /*
+
+
+
+    */
+    
 
     /*
     const insertImage = () => {
