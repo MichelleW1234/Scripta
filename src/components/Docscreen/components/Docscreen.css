@@ -44,6 +44,29 @@
 
 }
 
+.ImportImageContainer{
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+
+}
+
+.DocImageErrorSpace {
+
+  font-size: 1rem;
+
+  color: rgb(202, 0, 0);
+
+}
+
+.DocImageErrorNoneSpace{
+
+  height: 1rem;
+
+}
+
 .DocPaper{
 
   width: 60vw;

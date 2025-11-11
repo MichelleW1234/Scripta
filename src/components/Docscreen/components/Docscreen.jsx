@@ -20,6 +20,8 @@ function Docscreen (){
     const {ActiveDocument, setActiveDocument} = useActiveDocument();
     const {Trash, setTrash} = useTrash();
 
+    const [errorMessage, setErrorMessage] = useState("");
+    
     const [openTitleFlag, setOpenTitleFlag] = useState(false);
 
     const [currentDocument, setCurrentDocument] = useState(
@@ -45,26 +47,81 @@ function Docscreen (){
     };
 
 
-    const handleImageImport = (event) => {
+    const handleImageImport = async (event) => {
 
         const file = event.target.files[0];
         if (!file) return;
 
-        const reader = new FileReader();
+        try {
 
-        reader.onload = (e) => {
-            const imgTag = `<img src="${e.target.result}"/>`;      
+            const compressedBase64 = await compressImage(file, 0.7, 800);
+            const imgTag = `<img src="${compressedBase64}" />`;
             const updatedHTML = currentDocument[0] + imgTag;
 
             handleChange({ target: { value: updatedHTML } });
-            event.target.value = null;
-        };
 
-        reader.readAsDataURL(file);
+            event.target.value = "";
+
+            setErrorMessage("");
+
+        } catch (err) {
+
+            setErrorMessage(err.message);
+            setTimeout(() => setErrorMessage(""), 5000);
+
+        }
 
     };
 
 
+    const compressImage = (file, quality, maxWidth) => {
+
+        return new Promise((resolve, reject) => {
+
+            const reader = new FileReader();
+            const img = new Image();
+
+            // Once reader is fully read, image's base64 string value is set:
+            reader.onload = (e) => {
+                img.src = e.target.result;
+            }
+            
+            // In case file reading fails (catches error):
+            reader.onerror = reject;
+            // Starts reading the file:
+            reader.readAsDataURL(file);
+
+            // Once image is fully loaded, draw it a smaller canvas and compress image:
+            img.onload = () => {
+
+                const scale = Math.min(1, maxWidth/img.width);
+
+                const canvas = document.createElement("canvas");
+                canvas.width = img.width * scale;
+                canvas.height = img.height * scale;
+
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                const compressedBase64 = canvas.toDataURL("image/jpeg", quality);
+
+                // Freeing memory used by the canvas and the decoded image:
+                canvas.width = 0;
+                canvas.height = 0;
+                img.src = "";
+
+                // Returning compressed image to function caller:
+                resolve(compressedBase64);
+
+            };
+
+            // Image fails to load (catches error):
+            img.onerror = reject;
+
+        });
+    }
+
+    
     const saveProgress = (newActiveDoc) => {
 
         const now = new Date();
@@ -138,8 +195,11 @@ function Docscreen (){
                             style={{ display: "none" }}
                             onChange={handleImageImport}
                         />
+
                         
                     </div>
+
+                    <p className={errorMessage !== "" ? "DocImageErrorSpace" : "DocImageErrorNoneSpace"}>{errorMessage}</p>
 
                     <ContentEditable
                         innerRef={editableRef}
