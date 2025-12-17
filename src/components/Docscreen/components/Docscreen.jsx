@@ -8,8 +8,9 @@ import DocToolBar from './DocscreenComponents/DocToolBar/DocToolBar.jsx';
 import {useDocuments} from "../../../providers/DocumentsProvider.jsx";
 import {useTrash} from "../../../providers/TrashProvider.jsx";
 import {useActiveDocument} from "../../../providers/ActiveDocumentProvider.jsx";
+import {useImportedImages} from "../../../providers/ImportedImagesProvider.jsx";
 
-import { deleteDocument, moveToTrash } from '../../../helpers/Helpers.js';
+import { deleteDocument, moveToTrash, getImageCount } from '../../../helpers/Helpers.js';
 
 
 import "./Docscreen.css";
@@ -19,9 +20,9 @@ function Docscreen (){
     const {Documents, setDocuments} = useDocuments();
     const {ActiveDocument, setActiveDocument} = useActiveDocument();
     const {Trash, setTrash} = useTrash();
+    const {ImportedImages, setImportedImages} = useImportedImages();
 
     const [errorMessage, setErrorMessage] = useState("");
-    
     const [openTitleFlag, setOpenTitleFlag] = useState(false);
 
     const [currentDocument, setCurrentDocument] = useState(
@@ -30,9 +31,13 @@ function Docscreen (){
             : ["", "Untitled", "00052", ""]
         );
 
+    const otherImagesRef = useRef(ImportedImages - getImageCount(currentDocument[0]));
+
     const editableRef = useRef();
+
     const handleChange = (evt) => {
         const newText = evt.target.value;
+
         // Uses html-formatted text:
         setCurrentDocument(prev => [newText, ...prev.slice(1)]);
  
@@ -49,34 +54,63 @@ function Docscreen (){
 
     const handleImageImport = async (event) => {
 
-        const file = event.target.files[0];
+        const input = event.target;
+
+        // Grab file from input chooser:
+        const file = input.files?.[0];
+
+        // Immediately clear input chooser after grabbing file so that a new file can be selected:
+        input.value = "";
+
+        // Begin dealing with file:
+
         if (!file) return;
 
-        try {
+        // Check if image limit has been reached:
+        if (otherImagesRef.current + getImageCount(currentDocument[0]) >= 250){
 
-            const compressedBase64 = await compressImage(file, 0.7, 800);
-            const imgTag = `<img src="${compressedBase64}" />`;
-            const updatedHTML = currentDocument[0] + imgTag;
-
-            handleChange({ target: { value: updatedHTML } });
-
-            event.target.value = "";
-
-            setErrorMessage("");
-
-        } catch (err) {
-
-            setErrorMessage(err.message);
+            setErrorMessage("You have reached the image limit. Please delete images in any of your documents or in trash to clear space.");
             setTimeout(() => setErrorMessage(""), 5000);
+
+        } else {
+
+            try {
+
+                const compressedBase64 = await compressImage(file, 0.65);
+                const imgTag = `<img src="${compressedBase64}" />`;
+                const updatedHTML = currentDocument[0] + imgTag;
+
+                handleChange({ target: { value: updatedHTML } });
+
+                input.value = "";
+
+                setErrorMessage("");
+
+            } catch (err) {
+
+                setErrorMessage(err.message);
+                setTimeout(() => setErrorMessage(""), 5000);
+
+            }
 
         }
 
     };
 
 
-    const compressImage = (file, quality, maxWidth) => {
+    const compressImage = (file, quality) => {
+
+        const maxImageSize = 1000;
 
         return new Promise((resolve, reject) => {
+
+            // Manually reject image file if file size is too large (to save memory):
+            if (file.size > 3.5 * 1024 * 1024){
+
+                reject(new Error("File is too large! Maximum size is 3.5 MB."));
+                return;
+
+            }
 
             const reader = new FileReader();
             const img = new Image();
@@ -94,7 +128,16 @@ function Docscreen (){
             // Once image is fully loaded, draw it a smaller canvas and compress image:
             img.onload = () => {
 
-                const scale = Math.min(1, maxWidth/img.width);
+                // Manually reject image if dimensions are too large (to save memory):
+                if (img.width > maxImageSize || img.height > maxImageSize) {
+
+                    reject(new Error("Image is too large! Maximum dimensions are 1000x1000 pixels."));
+                    return;
+
+                }
+
+                // Start compression process: 
+                const scale = Math.min(1, maxImageSize/img.width);
 
                 const canvas = document.createElement("canvas");
                 canvas.width = img.width * scale;
@@ -142,6 +185,8 @@ function Docscreen (){
             setDocuments(prev => [updatedDateAndTime, ...prev]);
 
         }
+
+        setImportedImages(otherImagesRef.current + getImageCount(currentDocument[0]));
 
         setActiveDocument(newActiveDoc);
 

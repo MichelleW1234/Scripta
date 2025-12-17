@@ -1,4 +1,5 @@
 /*
+    Keeps track of which document is currently opened (if any)
 */
 
 import { createContext, useContext, useState, useEffect } from "react";

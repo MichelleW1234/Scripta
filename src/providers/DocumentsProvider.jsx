@@ -1,4 +1,5 @@
 /*
+  Keeps track of all the documents that the user has created (if any)
 */
 
 import { createContext, useContext, useState, useEffect } from "react";

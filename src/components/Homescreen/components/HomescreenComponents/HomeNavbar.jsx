@@ -28,7 +28,6 @@ function HomeNavBar (){
     };
 
 
-
     const findTitles = () => {
 
         setBarIsActive(true);

@@ -41,6 +41,8 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
 
     }
 
+    
+
     return (
 
         <>
@@ -121,7 +123,7 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
                         />
                     </div>
                 </div>
-                <button className="NavBarButton" onClick = {() => printDocument()}> Print Document </button>
+                <button className="NavBarButton"> Download Document </button>
             
             </div>
         </>

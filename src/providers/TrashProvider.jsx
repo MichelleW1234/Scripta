@@ -1,4 +1,5 @@
 /*
+  Keeps track of all the documents that have been temporarily deleted (if any)
 */
 
 import { createContext, useContext, useState, useEffect } from "react";
