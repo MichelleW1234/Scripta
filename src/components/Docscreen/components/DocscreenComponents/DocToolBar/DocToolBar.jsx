@@ -42,7 +42,6 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
     }
 
     
-
     return (
 
         <>
@@ -82,7 +81,7 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
                         <p> Font Type: </p>
                         <p className = {`DocToolBarOptionBox DocToolBarStyle-${currentDocument[2][0]}`}> {allFonts[currentDocument[2][0]]} </p>
                     </div>
-                    <button className = "DocToolBarChangeButton" onClick={() => setOpenFontFlag(true)}> Change Font </button>
+                    <button className = "DocToolBarChangeButton" onClick={() => setOpenFontFlag(true)}> Change Style </button>
                 </div>
                 <div className="DocToolBarChangeContainer">
                     <div className="DocToolBarChangeBox">
@@ -96,7 +95,7 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
                         <p> Page Color: </p>
                         <p className = {`DocToolBarColorBox DocToolBarPage-${currentDocument[2][2]}`}></p>
                     </div>
-                    <button className = "DocToolBarChangeButton" onClick={() => setOpenPageColorFlag(true)}> Change Page Color </button>
+                    <button className = "DocToolBarChangeButton" onClick={() => setOpenPageColorFlag(true)}> Change Color </button>
                 </div>
                 
                 <div className="DocToolBarChangeContainer">
@@ -123,8 +122,6 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
                         />
                     </div>
                 </div>
-                <button className="NavBarButton"> Download Document </button>
-            
             </div>
         </>
 

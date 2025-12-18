@@ -24,7 +24,7 @@ function Docscreen (){
 
     const [errorMessage, setErrorMessage] = useState("");
     const [openTitleFlag, setOpenTitleFlag] = useState(false);
-
+    const [savedSelectionSpot, setSavedSelectionSpot] = useState(null);
     const [currentDocument, setCurrentDocument] = useState(
         ActiveDocument !== -1 
             ? Documents[ActiveDocument]
@@ -32,8 +32,9 @@ function Docscreen (){
         );
 
     const otherImagesRef = useRef(ImportedImages - getImageCount(currentDocument[0]));
-
     const editableRef = useRef();
+
+
 
     const handleChange = (evt) => {
         const newText = evt.target.value;
@@ -49,6 +50,21 @@ function Docscreen (){
 
         const text = e.clipboardData.getData("text/plain");
         document.execCommand("insertText", false, text);
+    };
+
+
+    const handleFocus = () => {
+
+        // Gets the current selection object for the window
+        const sel = window.getSelection();
+
+        // Ensures a selection exists and at least one range (can be highlighted text or cursor position) exists in that selection:
+        if (sel && sel.rangeCount > 0) {
+
+            // Stores a copy of the first range in the selection:
+            setSavedSelectionSpot(sel.getRangeAt(0).cloneRange());
+        }
+        
     };
 
 
@@ -77,12 +93,40 @@ function Docscreen (){
             try {
 
                 const compressedBase64 = await compressImage(file, 0.65);
-                const imgTag = `<img src="${compressedBase64}" />`;
-                const updatedHTML = currentDocument[0] + imgTag;
+
+                // Creates an image element for the newly compresseed image:
+                const imgTag = document.createElement("img");
+                imgTag.src = compressedBase64;
+
+                let updatedHTML;
+
+                // Checks if there is a saved selection for image insertion (or else just insert at the end):
+                if (savedSelectionSpot) {
+
+                    // If selection is highlighted text, deletes highlighted text:
+                    savedSelectionSpot.deleteContents();
+
+                    // Inserts image element at the start of the selection:
+                    savedSelectionSpot.insertNode(imgTag);
+
+                    // Adjusts the start and end of the selection to the same cursor position (range == 1) after the inserted image node's position: 
+                    savedSelectionSpot.setStartAfter(imgTag);
+                    savedSelectionSpot.setEndAfter(imgTag);
+
+                    // Sets the browser to continue with this adjusted selection:
+                    const sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(savedSelectionSpot);
+
+                    // Grabs the updated contenteditable's html with the newly inserted image element:
+                    updatedHTML =  editableRef.current.innerHTML;
+
+                } else {
+
+                    updatedHTML = currentDocument[0] + imgTag.outerHTML;
+                }
 
                 handleChange({ target: { value: updatedHTML } });
-
-                input.value = "";
 
                 setErrorMessage("");
 
@@ -94,6 +138,8 @@ function Docscreen (){
             }
 
         }
+
+                console.log("HELLO???");
 
     };
 
@@ -195,6 +241,8 @@ function Docscreen (){
 
     const deleting = () => {
 
+        setImportedImages(otherImagesRef.current + getImageCount(currentDocument[0]));
+
         if (ActiveDocument !== -1){
 
             deleteDocument(setTrash, setDocuments, ActiveDocument, currentDocument);
@@ -251,6 +299,8 @@ function Docscreen (){
                         html={currentDocument[0]}
                         onChange={handleChange}
                         onPaste={handlePaste}
+                        onKeyUp = {handleFocus}
+                        onMouseUp={handleFocus}
                         tagName="div"
                         className={`DocPaper DocStyle-${currentDocument[2][0]} DocColor-${currentDocument[2][1]} DocPage-${currentDocument[2][2]} DocFontSize-${currentDocument[2][3]} DocImageSize-${currentDocument[2][4]}`}
                     />
