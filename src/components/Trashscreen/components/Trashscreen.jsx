@@ -9,10 +9,11 @@ import "./Trashscreen.css";
 
 function Trashscreen (){
 
-    const {Trash, setTrash} = useTrash();
+    const {Trash} = useTrash();
 
     const [selected, setSelected] = useState([]);
     
+
     
     const editSelected = (index) => {
 
@@ -29,6 +30,7 @@ function Trashscreen (){
     }
 
 
+    
     return (    
 
         <>

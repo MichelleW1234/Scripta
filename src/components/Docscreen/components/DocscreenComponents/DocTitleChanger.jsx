@@ -9,9 +9,11 @@ function DocTitleChanger ({setOpenTitleFlag, currentDocument, setCurrentDocument
 
     const [newTitle, setNewTitle] = useState(currentDocument[1]);
     const [errorFlag, setErrorFlag] = useState(false);
-
     
     const editableRef = useRef();
+
+    
+
     const handleChange = (evt) => {
         const newText = evt.target.value;
         const unformattedText = newText.replace(/<[^>]+>/g, "");
@@ -19,7 +21,6 @@ function DocTitleChanger ({setOpenTitleFlag, currentDocument, setCurrentDocument
         // Uses non-html formatted text:
         setNewTitle(unformattedText);
     };
-
 
 
     const processNewTitle = () => {
@@ -67,6 +68,11 @@ function DocTitleChanger ({setOpenTitleFlag, currentDocument, setCurrentDocument
                     innerRef={editableRef}
                     html={newTitle}
                     onChange={handleChange}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                        }
+                    }}
                     tagName="div"
                     className="DocTitleChangerText"
                 />

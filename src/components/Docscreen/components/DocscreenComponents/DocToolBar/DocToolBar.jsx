@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-import DocFontStyleChanger from "./DocToolBarComponents/DocFontStyleChanger.jsx";
+import DocStyleChanger from "./DocToolBarComponents/DocStyleChanger.jsx";
 
 import "./DocToolBar.css";
 
@@ -42,11 +42,13 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
     }
 
     
+
+    
     return (
 
         <>
             {openFontFlag === true &&
-                <DocFontStyleChanger
+                <DocStyleChanger
                     typeChanging = {0}
                     setOpenFlag = {setOpenFontFlag}
                     currentDocument = {currentDocument}
@@ -56,7 +58,7 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
             }
 
             {openColorFlag === true &&
-                <DocFontStyleChanger
+                <DocStyleChanger
                     typeChanging = {1}
                     setOpenFlag = {setOpenColorFlag}
                     currentDocument = {currentDocument}
@@ -66,7 +68,7 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
             }
 
             {openPageColorFlag === true &&
-                <DocFontStyleChanger
+                <DocStyleChanger
                     typeChanging = {2}
                     setOpenFlag = {setOpenPageColorFlag}
                     currentDocument = {currentDocument}

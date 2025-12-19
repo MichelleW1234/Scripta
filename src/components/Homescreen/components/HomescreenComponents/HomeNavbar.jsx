@@ -10,14 +10,17 @@ import "./HomeNavbar.css";
 
 function HomeNavBar (){
 
-    const {Documents, setDocuments} = useDocuments();
-    const {ActiveDocument, setActiveDocument} = useActiveDocument();
+    const {Documents} = useDocuments();
+    const {setActiveDocument} = useActiveDocument();
 
     const [titleLookup, setTitleLookup] = useState("");
     const [matchingTitles, setMatchingTitles] = useState([])
     const [barIsActive, setBarIsActive] = useState(false);
 
     const editableRef = useRef();
+
+
+
     const handleChange = (evt) => {
         const newText = evt.target.value;
         const unformattedText = newText.replace(/<[^>]+>/g, "");
@@ -65,11 +68,25 @@ function HomeNavBar (){
                     innerRef={editableRef}
                     html={titleLookup}
                     onChange={handleChange}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                        }
+                    }}
                     tagName="div"
                     className="HomeNavBarLookup"
                 />
 
-                <button className="NavBarButton" onClick = {() => findTitles()}> Find Document </button>
+                {Documents.length > 0 ? (
+
+                    <button className="NavBarButton" onClick = {() => findTitles()}> Find Document </button>
+
+                ) : (
+
+                    <button className="NavBarButtonPlaceHolder"> Find Document </button>
+
+                )}
+                
                 <Link to="/trash" className="NavBarButton"> Go to Trash </Link>
 
             </div>

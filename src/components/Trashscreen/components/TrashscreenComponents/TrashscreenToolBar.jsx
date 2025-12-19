@@ -8,9 +8,11 @@ import "./TrashscreenToolBar.css";
 
 function TrashscreenToolBar ({selected, setSelected}){
 
-    const {Documents, setDocuments} = useDocuments();
+    const {setDocuments} = useDocuments();
     const {Trash, setTrash} = useTrash();
-    const {ImportedImages, setImportedImages} = useImportedImages();
+    const {setImportedImages} = useImportedImages();
+
+
 
     const restore = () => {
     
@@ -63,6 +65,7 @@ function TrashscreenToolBar ({selected, setSelected}){
     }
 
 
+    
     return (
 
         <div className = "NavBarContainer">
@@ -77,13 +80,13 @@ function TrashscreenToolBar ({selected, setSelected}){
             ) : (
 
                 <>
-                    <div className = "buttonPlaceHolder" > Restore </div>
-                    <div className = "buttonPlaceHolder" > Delete Permanently </div>
+                    <div className = "NavBarButtonPlaceHolder" > Restore </div>
+                    <div className = "NavBarButtonPlaceHolder" > Delete Permanently </div>
                 </>
 
             )}
 
-            <button className = {Trash.length > 0 ? "NavBarButton" : "buttonPlaceHolder"}  onClick = {() => emptyTrash()}> Empty Trash </button>
+            <button className = {Trash.length > 0 ? "NavBarButton" : "NavBarButtonPlaceHolder"}  onClick = {() => emptyTrash()}> Empty Trash </button>
 
         </div>
 

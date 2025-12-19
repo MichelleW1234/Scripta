@@ -19,7 +19,7 @@ function Docscreen (){
 
     const {Documents, setDocuments} = useDocuments();
     const {ActiveDocument, setActiveDocument} = useActiveDocument();
-    const {Trash, setTrash} = useTrash();
+    const {setTrash} = useTrash();
     const {ImportedImages, setImportedImages} = useImportedImages();
 
     const [errorMessage, setErrorMessage] = useState("");

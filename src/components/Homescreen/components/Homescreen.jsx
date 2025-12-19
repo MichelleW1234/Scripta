@@ -13,8 +13,8 @@ import "./Homescreen.css";
 function Homescreen (){
 
     const {Documents, setDocuments} = useDocuments();
-    const {ActiveDocument, setActiveDocument} = useActiveDocument();
-    const {Trash, setTrash} = useTrash();
+    const {setActiveDocument} = useActiveDocument();
+    const {setTrash} = useTrash();
 
 
     const goToDocument = (indexToActivate) => {
