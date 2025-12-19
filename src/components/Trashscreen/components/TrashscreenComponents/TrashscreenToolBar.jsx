@@ -4,7 +4,6 @@ import {useImportedImages} from "../../../../providers/ImportedImagesProvider.js
 
 import { getImageCount } from '../../../../helpers/Helpers.js';
 
-import "./TrashscreenToolBar.css";
 
 function TrashscreenToolBar ({selected, setSelected}){
 
