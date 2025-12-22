@@ -72,6 +72,15 @@ function Docscreen (){
 
         const input = event.target;
 
+        // Checking that only one image file is selected for import:
+        if (input.files && input.files.length > 1) {
+
+            setErrorMessage("Please select only one image per import.");
+            input.value = "";
+            return;
+
+        }
+
         // Grab file from input chooser:
         const file = input.files?.[0];
 
@@ -85,7 +94,7 @@ function Docscreen (){
         // Check if image limit has been reached:
         if (otherImagesRef.current + getImageCount(currentDocument[0]) >= 250){
 
-            setErrorMessage("You have reached the image limit. Please delete images in any of your documents or in trash to clear space.");
+            setErrorMessage("Image limit (250) reached! Please delete images in your documents or in trash to clear space.");
             setTimeout(() => setErrorMessage(""), 5000);
 
         } else {
@@ -138,8 +147,6 @@ function Docscreen (){
             }
 
         }
-
-                console.log("HELLO???");
 
     };
 
