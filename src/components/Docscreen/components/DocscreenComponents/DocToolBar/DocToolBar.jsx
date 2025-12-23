@@ -47,7 +47,7 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
     return (
 
         <>
-            {openFontFlag === true &&
+            {openFontFlag &&
                 <DocStyleChanger
                     typeChanging = {0}
                     setOpenFlag = {setOpenFontFlag}
@@ -57,7 +57,7 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
                 />
             }
 
-            {openColorFlag === true &&
+            {openColorFlag &&
                 <DocStyleChanger
                     typeChanging = {1}
                     setOpenFlag = {setOpenColorFlag}
@@ -67,7 +67,7 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
                 />
             }
 
-            {openPageColorFlag === true &&
+            {openPageColorFlag &&
                 <DocStyleChanger
                     typeChanging = {2}
                     setOpenFlag = {setOpenPageColorFlag}

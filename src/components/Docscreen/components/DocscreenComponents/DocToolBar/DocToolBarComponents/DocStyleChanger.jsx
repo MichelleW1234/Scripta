@@ -1,12 +1,12 @@
 import {useState, useEffect, useRef} from "react";
 
-import useKeyboardShortcut from "../../../../../hooks/useKeyboardShortcut";
+import useKeyboardShortcut from "../../../../../../hooks/useKeyboardShortcut";
 
 import "./DocStyleChanger.css";
 
 function DocStyleChanger ({typeChanging, setOpenFlag, currentDocument, setCurrentDocument, allOptions}){
 
-    const [activeButton, setActiveButton] = useState(Number(currentDocument[2][typeChanging]));
+    const [activeButton, setActiveButton] = useState(parseInt(currentDocument[2][typeChanging], 16));
 
     const totalButtons = allOptions.length;
 

@@ -17,7 +17,7 @@ function HomeNavBar (){
     const [matchingTitles, setMatchingTitles] = useState([])
     const [barIsActive, setBarIsActive] = useState(false);
 
-    const editableRef = useRef();
+    const editableRef = useRef(null);
 
 
 
@@ -91,7 +91,7 @@ function HomeNavBar (){
 
             </div>
 
-            {barIsActive === true ? (
+            {barIsActive ? (
 
                 <div className = "HomeNavBarSuggestionsFlag">
                     <div className="HomeNavBarSuggestionsContainer">

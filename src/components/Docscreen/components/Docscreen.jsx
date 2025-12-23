@@ -32,7 +32,8 @@ function Docscreen (){
         );
 
     const otherImagesRef = useRef(ImportedImages - getImageCount(currentDocument[0]));
-    const editableRef = useRef();
+    const editableRef = useRef(null);
+    const timeoutRef = useRef(null);
 
 
 
@@ -75,7 +76,7 @@ function Docscreen (){
         // Checking that only one image file is selected for import:
         if (input.files && input.files.length > 1) {
 
-            setErrorMessage("Please select only one image per import.");
+            showErrorMessage("Please select only one image per import.");
             input.value = "";
             return;
 
@@ -94,8 +95,7 @@ function Docscreen (){
         // Check if image limit has been reached:
         if (otherImagesRef.current + getImageCount(currentDocument[0]) >= 250){
 
-            setErrorMessage("Image limit (250) reached! Please delete images in your documents or in trash to clear space.");
-            setTimeout(() => setErrorMessage(""), 5000);
+            showErrorMessage("Image limit (250) reached! Please delete images in your documents or in trash to clear space.");
 
         } else {
 
@@ -141,8 +141,7 @@ function Docscreen (){
 
             } catch (err) {
 
-                setErrorMessage(err.message);
-                setTimeout(() => setErrorMessage(""), 5000);
+                showErrorMessage(err.message);
 
             }
 
@@ -217,6 +216,24 @@ function Docscreen (){
         });
     }
 
+
+    const showErrorMessage = (message) => {
+
+        setErrorMessage(message);
+
+        // Cancels any existing timers:
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+
+        // Starts a fresh 3s timer:
+        timeoutRef.current = setTimeout(() => {
+            setErrorMessage("");
+            timeoutRef.current = null;
+        }, 5000);
+
+    }
+
     
     const saveProgress = (newActiveDoc) => {
 
@@ -267,7 +284,7 @@ function Docscreen (){
     return (
 
         <>
-            {openTitleFlag === true &&
+            {openTitleFlag &&
             <DocTitleChanger
                 setOpenTitleFlag = {setOpenTitleFlag}
                 currentDocument={currentDocument}

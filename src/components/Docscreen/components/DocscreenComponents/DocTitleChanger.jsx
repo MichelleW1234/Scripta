@@ -10,7 +10,7 @@ function DocTitleChanger ({setOpenTitleFlag, currentDocument, setCurrentDocument
     const [newTitle, setNewTitle] = useState(currentDocument[1]);
     const [errorFlag, setErrorFlag] = useState(false);
     
-    const editableRef = useRef();
+    const editableRef = useRef(null);
 
     
 
