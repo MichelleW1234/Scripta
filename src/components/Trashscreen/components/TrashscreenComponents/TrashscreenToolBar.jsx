@@ -36,12 +36,14 @@ function TrashscreenToolBar ({selected, setSelected}){
 
     const deletePermanently = () => {
 
+        const selectedTrash = Trash.filter((_, i) => selected.includes(i));
+
         setTrash(prev => {
             return prev.filter((_, i) => !selected.includes(i));
         });
 
         let deletedImageCount = 0;
-        selected.forEach(document => {
+        selectedTrash.forEach(document => {
             deletedImageCount += getImageCount(document[0]);
         });
         setImportedImages(prev => prev - deletedImageCount);
