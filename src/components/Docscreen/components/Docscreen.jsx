@@ -24,13 +24,13 @@ function Docscreen (){
 
     const [errorMessage, setErrorMessage] = useState("");
     const [openTitleFlag, setOpenTitleFlag] = useState(false);
-    const [savedSelectionSpot, setSavedSelectionSpot] = useState(null);
     const [currentDocument, setCurrentDocument] = useState(
         ActiveDocument !== -1 
             ? Documents[ActiveDocument]
             : ["", "Untitled", "00052", ""]
         );
 
+    const savedSelectionSpotRef = useRef(null);
     const otherImagesRef = useRef(ImportedImages - getImageCount(currentDocument[0]));
     const editableRef = useRef(null);
     const timeoutRef = useRef(null);
@@ -63,7 +63,7 @@ function Docscreen (){
         if (sel && sel.rangeCount > 0) {
 
             // Stores a copy of the first range in the selection:
-            setSavedSelectionSpot(sel.getRangeAt(0).cloneRange());
+            savedSelectionSpotRef.current = sel.getRangeAt(0).cloneRange();
         }
         
     };
@@ -110,22 +110,22 @@ function Docscreen (){
                 let updatedHTML;
 
                 // Checks if there is a saved selection for image insertion (or else just insert at the end):
-                if (savedSelectionSpot) {
+                if (savedSelectionSpotRef.current) {
 
                     // If selection is highlighted text, deletes highlighted text:
-                    savedSelectionSpot.deleteContents();
+                    savedSelectionSpotRef.current.deleteContents();
 
                     // Inserts image element at the start of the selection:
-                    savedSelectionSpot.insertNode(imgTag);
+                    savedSelectionSpotRef.current.insertNode(imgTag);
 
                     // Adjusts the start and end of the selection to the same cursor position (range == 1) after the inserted image node's position: 
-                    savedSelectionSpot.setStartAfter(imgTag);
-                    savedSelectionSpot.setEndAfter(imgTag);
+                    savedSelectionSpotRef.current.setStartAfter(imgTag);
+                    savedSelectionSpotRef.current.setEndAfter(imgTag);
 
                     // Sets the browser to continue with this adjusted selection:
                     const sel = window.getSelection();
                     sel.removeAllRanges();
-                    sel.addRange(savedSelectionSpot);
+                    sel.addRange(savedSelectionSpotRef.current);
 
                     // Grabs the updated contenteditable's html with the newly inserted image element:
                     updatedHTML =  editableRef.current.innerHTML;
