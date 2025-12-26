@@ -55,6 +55,7 @@ function HomeNavBar (){
 
         setBarIsActive(false);
         setTitleLookup("");
+        setMatchingTitles([]);
 
     }
 
