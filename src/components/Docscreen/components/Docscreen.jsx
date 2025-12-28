@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {useState, useRef} from "react";
 import ContentEditable from "react-contenteditable";
 
+import DocDeleteWarning from './DocscreenComponents/DocDeleteWarning.jsx';
 import DocTitleChanger from "./DocscreenComponents/DocTitleChanger.jsx";
 import DocToolBar from './DocscreenComponents/DocToolBar/DocToolBar.jsx';
 
@@ -24,6 +25,7 @@ function Docscreen (){
 
     const [errorMessage, setErrorMessage] = useState("");
     const [openTitleFlag, setOpenTitleFlag] = useState(false);
+    const [openDocDeleteWarningFlag, setOpenDocDeleteWarningFlag] = useState(false);
     const [currentDocument, setCurrentDocument] = useState(
         ActiveDocument !== -1 
             ? Documents[ActiveDocument]
@@ -263,27 +265,16 @@ function Docscreen (){
     }
 
 
-    const deleting = () => {
-
-        setImportedImages(otherImagesRef.current + getImageCount(currentDocument[0]));
-
-        if (ActiveDocument !== -1){
-
-            deleteDocument(setTrash, setDocuments, ActiveDocument, currentDocument);
-            setActiveDocument(-1);
-
-        } else {
-
-            moveToTrash(currentDocument, setTrash);
-
-        }
-
-    }
-
-
     return (
 
         <>
+            {openDocDeleteWarningFlag &&
+            <DocDeleteWarning
+                setOpenDocDeleteWarningFlag = {setOpenDocDeleteWarningFlag}
+                currentDocument={currentDocument}
+                otherImagesRef = {otherImagesRef}
+            />}
+
             {openTitleFlag &&
             <DocTitleChanger
                 setOpenTitleFlag = {setOpenTitleFlag}
@@ -332,7 +323,7 @@ function Docscreen (){
                     <div className = "GeneralButtonsContainer">
                         <button className = "GeneralButton" onClick = {() => saveProgress(0)}> Save </button>
                         <Link to="/home" className = "GeneralButton" onClick = {() => saveProgress(-1)}> Save + Exit </Link>
-                        <Link to="/home" className = "GeneralButton" onClick = {() => deleting()}> Delete </Link>
+                        <button className = "GeneralButton" onClick = {() => setOpenDocDeleteWarningFlag(true)}> Delete </button>
                     </div>
 
                 </div>

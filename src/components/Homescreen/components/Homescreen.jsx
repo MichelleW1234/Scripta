@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import {useState} from "react";
+
+import HomeDeleteWarning from './HomescreenComponents/HomeDeleteWarning.jsx';
 
 import {useDocuments} from "../../../providers/DocumentsProvider.jsx";
 import {useActiveDocument} from "../../../providers/ActiveDocumentProvider.jsx";
 import {useTrash} from "../../../providers/TrashProvider.jsx";
-
-import { deleteDocument } from '../../../helpers/Helpers.js';
 
 import HomeNavBar from "./HomescreenComponents/HomeNavbar.jsx";
 
@@ -16,6 +17,9 @@ function Homescreen (){
     const {setActiveDocument} = useActiveDocument();
     const {setTrash} = useTrash();
 
+    const [openHomeDeleteWarningFlag, setOpenHomeDeleteWarningFlag] = useState(false);
+    const [indexToDelete, setIndexToDelete] = useState(-1);
+
 
     const goToDocument = (indexToActivate) => {
 
@@ -23,10 +27,26 @@ function Homescreen (){
 
     }
 
+    const deleteWarning = (index) => {
+
+        setOpenHomeDeleteWarningFlag(true);
+        setIndexToDelete(index);
+
+    }
+
 
     return (
 
         <>
+            {openHomeDeleteWarningFlag &&
+            <HomeDeleteWarning 
+                setOpenHomeDeleteWarningFlag={setOpenHomeDeleteWarningFlag} 
+                indexToDelete = {indexToDelete}
+                setIndexToDelete = {setIndexToDelete}
+            />
+
+            }
+
             <HomeNavBar/>
             <div className = "HomescreenLayout">
         
@@ -43,7 +63,7 @@ function Homescreen (){
                                     <h1 className = "HomeDocTitle">{finalTitle}</h1>
                                     <div className = "Options">
                                         <Link to="/document" className = "HomeDocButton" onClick = {() => goToDocument(index)}> Go to Document</Link>
-                                        <button className = "HomeDocButton" onClick = {() => deleteDocument(setTrash, setDocuments, index, Documents[index])}> Delete </button>
+                                        <button className = "HomeDocButton" onClick = {() => deleteWarning(index)}> Delete </button>
                                     </div>
                                 </div>
                                 <p className = "HomeDocDateAndTime">{Documents[index][3]}</p>

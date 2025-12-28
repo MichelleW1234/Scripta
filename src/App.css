@@ -167,6 +167,16 @@ button{
 
 }
 
+
+.FullFlagButtonContainer{
+
+  display: flex;
+  flex-direction: row;
+
+  gap: 2rem;
+
+}
+
 .FlagContainerButton{
 
   font-size: 1rem;
