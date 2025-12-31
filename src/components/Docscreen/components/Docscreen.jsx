@@ -1,17 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {useState, useRef} from "react";
 import ContentEditable from "react-contenteditable";
 
-import DocDeleteWarning from './DocscreenComponents/DocDeleteWarning.jsx';
+import DocDeleteWarning from "./DocscreenComponents/DocDeleteWarning.jsx";
 import DocTitleChanger from "./DocscreenComponents/DocTitleChanger.jsx";
-import DocToolBar from './DocscreenComponents/DocToolBar/DocToolBar.jsx';
+import DocToolBar from "./DocscreenComponents/DocToolBar/DocToolBar.jsx";
 
 import {useDocuments} from "../../../providers/DocumentsProvider.jsx";
-import {useTrash} from "../../../providers/TrashProvider.jsx";
 import {useActiveDocument} from "../../../providers/ActiveDocumentProvider.jsx";
 import {useImportedImages} from "../../../providers/ImportedImagesProvider.jsx";
 
-import { deleteDocument, moveToTrash, getImageCount } from '../../../helpers/Helpers.js';
+import { getImageCount } from "../../../helpers/Helpers.js";
 
 
 import "./Docscreen.css";
@@ -20,7 +19,6 @@ function Docscreen (){
 
     const {Documents, setDocuments} = useDocuments();
     const {ActiveDocument, setActiveDocument} = useActiveDocument();
-    const {setTrash} = useTrash();
     const {ImportedImages, setImportedImages} = useImportedImages();
 
     const [errorMessage, setErrorMessage] = useState("");

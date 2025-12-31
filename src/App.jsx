@@ -4,8 +4,8 @@ import Trashscreen from "./components/Trashscreen/components/Trashscreen.jsx";
 
 import NoPage from "./components/NoPage.jsx";
 import ScrollToTop from "./ScrollToTop.jsx";
-import {HashRouter, Routes, Route} from 'react-router-dom';
-import './App.css'
+import {HashRouter, Routes, Route} from "react-router-dom";
+import "./App.css";
 
 function App() {
 

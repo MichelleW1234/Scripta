@@ -1,7 +1,8 @@
 import {useDocuments} from "../../../../providers/DocumentsProvider.jsx";
 import {useTrash} from "../../../../providers/TrashProvider.jsx";
 
-import { deleteDocument } from '../../../../helpers/Helpers.js';
+import { deleteDocument } from "../../../../helpers/Helpers.js";
+
 
 function HomeDeleteWarning ({setOpenHomeDeleteWarningFlag, indexToDelete, setIndexToDelete}){
 

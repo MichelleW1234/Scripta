@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import {useState} from 'react';
+import { Link } from "react-router-dom";
+import {useState} from "react";
 
 import {useTrash} from "../../../providers/TrashProvider.jsx";
 
@@ -47,7 +47,7 @@ function Trashscreen (){
                     
                     ): (
 
-                        Trash.map((page, index) => {
+                        Trash.map((___, index) => {
 
                             const finalTitle = Trash[index][1].length > 30 ? Trash[index][1].slice(0, 30) + "..." 
                                 : Trash[index][1];

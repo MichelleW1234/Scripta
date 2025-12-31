@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {useState, useRef} from "react";
 import ContentEditable from "react-contenteditable";
 
 import {useDocuments} from "../../../../providers/DocumentsProvider.jsx";
-import { useActiveDocument } from '../../../../providers/ActiveDocumentProvider.jsx';
+import { useActiveDocument } from "../../../../providers/ActiveDocumentProvider.jsx";
 
 import "./HomeNavbar.css";
 

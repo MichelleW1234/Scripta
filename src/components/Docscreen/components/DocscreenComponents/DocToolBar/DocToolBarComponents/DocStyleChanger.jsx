@@ -4,11 +4,12 @@ import useKeyboardShortcut from "../../../../../../hooks/useKeyboardShortcut";
 
 import "./DocStyleChanger.css";
 
+
 function DocStyleChanger ({typeChanging, setOpenFlag, currentDocument, setCurrentDocument, allOptions}){
 
-    const [activeButton, setActiveButton] = useState(parseInt(currentDocument[2][typeChanging], 16));
-
     const totalButtons = allOptions.length;
+
+    const [activeButton, setActiveButton] = useState(parseInt(currentDocument[2][typeChanging], 16));
 
     const itemRefs = useRef([]);
     const doneButtonRef = useRef(null);

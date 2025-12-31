@@ -2,7 +2,7 @@ import {useDocuments} from "../../../../providers/DocumentsProvider.jsx";
 import {useTrash} from "../../../../providers/TrashProvider.jsx";
 import {useImportedImages} from "../../../../providers/ImportedImagesProvider.jsx";
 
-import { getImageCount } from '../../../../helpers/Helpers.js';
+import { getImageCount } from "../../../../helpers/Helpers.js";
 
 
 function TrashscreenToolBar ({selected, setSelected}){

@@ -1,19 +1,20 @@
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import {useDocuments} from "../../../../providers/DocumentsProvider.jsx";
 import {useTrash} from "../../../../providers/TrashProvider.jsx";
 import {useActiveDocument} from "../../../../providers/ActiveDocumentProvider.jsx";
 import {useImportedImages} from "../../../../providers/ImportedImagesProvider.jsx";
 
-import { deleteDocument, moveToTrash, getImageCount } from '../../../../helpers/Helpers.js';
+import { deleteDocument, moveToTrash, getImageCount } from "../../../../helpers/Helpers.js";
+
 
 function DocDeleteWarning ({setOpenDocDeleteWarningFlag, currentDocument, otherImagesRef}){
 
-    const {Documents, setDocuments} = useDocuments();
+    const {setDocuments} = useDocuments();
     const {ActiveDocument, setActiveDocument} = useActiveDocument();
     const {setTrash} = useTrash();
-    const {ImportedImages, setImportedImages} = useImportedImages();
+    const {setImportedImages} = useImportedImages();
 
     const deleting = () => {
 

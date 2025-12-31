@@ -48,34 +48,31 @@ function DocToolBar ({currentDocument, setCurrentDocument}){
 
         <>
             {openFontFlag &&
-                <DocStyleChanger
-                    typeChanging = {0}
-                    setOpenFlag = {setOpenFontFlag}
-                    currentDocument = {currentDocument}
-                    setCurrentDocument = {setCurrentDocument} 
-                    allOptions = {allFonts}
-                />
-            }
+            <DocStyleChanger
+                typeChanging = {0}
+                setOpenFlag = {setOpenFontFlag}
+                currentDocument = {currentDocument}
+                setCurrentDocument = {setCurrentDocument} 
+                allOptions = {allFonts}
+            />}
 
             {openColorFlag &&
-                <DocStyleChanger
-                    typeChanging = {1}
-                    setOpenFlag = {setOpenColorFlag}
-                    currentDocument = {currentDocument}
-                    setCurrentDocument = {setCurrentDocument} 
-                    allOptions = {allColors}
-                />
-            }
+            <DocStyleChanger
+                typeChanging = {1}
+                setOpenFlag = {setOpenColorFlag}
+                currentDocument = {currentDocument}
+                setCurrentDocument = {setCurrentDocument} 
+                allOptions = {allColors}
+            />}
 
             {openPageColorFlag &&
-                <DocStyleChanger
-                    typeChanging = {2}
-                    setOpenFlag = {setOpenPageColorFlag}
-                    currentDocument = {currentDocument}
-                    setCurrentDocument = {setCurrentDocument} 
-                    allOptions = {allPageColors}
-                />
-            }
+            <DocStyleChanger
+                typeChanging = {2}
+                setOpenFlag = {setOpenPageColorFlag}
+                currentDocument = {currentDocument}
+                setCurrentDocument = {setCurrentDocument} 
+                allOptions = {allPageColors}
+            />}
 
             <div className = "NavBarContainer">
                 <div className="DocToolBarChangeContainer">

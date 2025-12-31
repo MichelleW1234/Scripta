@@ -21,7 +21,7 @@ export const moveToTrash = (trashDocument, setTrash) => {
 
 export const getImageCount = (text) => {
 
-    const doc = new DOMParser().parseFromString(text, 'text/html');
-    return doc.querySelectorAll('img').length;
+    const doc = new DOMParser().parseFromString(text, "text/html");
+    return doc.querySelectorAll("img").length;
     
 };
